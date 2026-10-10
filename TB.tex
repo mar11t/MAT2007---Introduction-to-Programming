@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib} % for numeric references
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \includegraphics[width=8cm]{figures/MSP-logo.jpg} 
+        \vspace{1cm}
+        
+        \textbf{\LARGE Rate of new tuberculosis cases in 2024:}\\
+
+        \vspace{0.5cm}
+        
+        \textbf{\LARGE per 100.000 individuals}
+        
+        \vspace{1.5cm}
+        
+        \textbf{\Large Marita Heidl (I6406044)}
+        
+        \vfill
+        
+        \large Date: \today
+        
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+\section*{Introduction}
+Tuberculosis (TB) is an airborne infectious disease caused by Mycobacterium tuberculosis bacteria that attacks the lungs \cite{who2025}. Worldwide, tuberculosis is the leading infectious cause of death, with more than 10.7 million reported cases in 2024. It is usually treated with antibiotics, but can develop drug-resistance because of incorrect use of medicine and exists in both a dormant and active form.  Despite the available treatments, the disease is still persistent and distributed unequally across the world. Furthermore, the COVID-19 pandemic in 2020 had an effect on the access to essential tuberculosis services \cite{falzon2023}. This project analyses which countries had the highest incidence rate in 2024 per 100.000 individuals and if the country with the highest recorded incidence experienced any changes during the COVID-19 pandemic. 
+
+\section*{Dataset}
+The dataset is from the World Health Organisation (WHO) Global Tuberculosis Programmed found in Our World in Data \cite{dattani2023}. “Rate of new tuberculosis cases 2024” contains estimated rate of new tuberculosis cases per 100.000 people. The raw dataset contains four primary columns which are: Entity, code, year and estimated incidence of all forms of tuberculosis.  The data was first standardised then cleaned by filtering for standard three-letter ISO codes which excluded regional and national aggregates. 
+
+\section*{Data analysis method}
+Reporting disease records independent events occurring across large populations. The uncertainty is calculated using Poisson statistics. For an estimated incidence rate $R$, the uncertainty $\sigma$ is defined as: $\sigma = \sqrt{R}$.
+To evaluate the cross-sectional ranking in 2024, we look at the top two highest incidence countries ($R_1$ and $R_2$). Their absolute rate difference $\Delta R = R_1 - R_2$ has independent measurement errors that were propagated: $\sigma_{\Delta R} = \sqrt{\sigma_1^2 + \sigma_2^2}$.
+Statistical significance was then evaluated using the standard z-score: $z = \Delta R / \sigma_{\Delta R}$ with a threshold of $z \ge 3\sigma$ ($p < 0.003$) to reject the null hypothesis.
+
+
+\section*{Results and discussion}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth,height=6.5cm,keepaspectratio]{plot_1.png}
+    \caption{Top 5 countries by Tuberculosis incidence in 2024 per 100,000 people.}
+    \label{fig:plot1}
+\end{figure}
+This figure shows the top 5 countries by tuberculosis incidence in 2024 per 100.000 people. The two top countries, Kiribati and Papua New Guinea were used to check if the difference between the countries is statistically significant or not. The values found were: 
+\begin{itemize}
+    \item \textbf{Kiribati ($R_1$):} $945.00 \pm 30.74$ cases per 100k
+    \item \textbf{Papua New Guinea ($R_2$):} $664.00 \pm 25.77$ cases per 100k
+    \item \textbf{Absolute difference ($\Delta R$):} $281.00 \pm 40.11$ cases per 100k
+\end{itemize}
+Which gives us a z-value of $7.01\sigma$.
+The difference is over seven times larger than its propagated uncertainty meaning that Kiribati’s step ahead Papua New Guinea is statistically significant. This confirms that the high cases of tuberculosis in Kiribati doesn’t occur due to random fluctuations but rather epidemiological reasons.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth,height=6.5cm,keepaspectratio]{plot_2.png}
+    \caption{Tuberculosis trendline around COVID-19 in Kiribati (2016--2024).}
+    \label{fig:plot2}
+\end{figure}
+This figure shows Kiribati’s tuberculosis incidence from 2016-2024 with a focus on COVID-19 (2020-2021). Between 2019 and 2020, Kiribati experienced a shift of -60.00 cases per 100.000, falling from 714.00 to 654.00 with an 8.4 \% drop in incidence rates reaching an overall low in tuberculosis cases in 2021. A z-score of $4.67\sigma$ was calculated which confirms that the drop was statistically significant. This could be due to the restricted access to essential tuberculosis services due to a new emerging virus and the reallocation of laboratories.  Normal surveillance resumed after 2021 (post-covid). 
+
+\section*{Conclusion}
+This project confirms that Kiribati holds the highest global incidence rate in 2024 at 945.00± 30.74 cases per 100k maintaining a statistically significant margin over Papua New Guinea. Furthermore, the COVID-19 drop in reported cases can be seen in 2020-2021 for Kiribati. These results show that in the case of a pandemic, diagnosis for already existing infectious diseases cannot be put on hold.
+
+\begin{thebibliography}{9}
+
+\bibitem{who2025}
+World Health Organization. 
+\textit{Tuberculosis Fact Sheet}. 
+Available at: \href{https://www.who.int/news-room/fact-sheets/detail/tuberculosis}{https://www.who.int/news-room/fact-sheets/detail/tuberculosis}.
+
+
+\bibitem{falzon2023}
+D.~Falzon, M.~Zignol, M.~Bastard, K.~Floyd, and T.~Kasaeva. 
+\textit{The impact of the COVID-19 pandemic on the global tuberculosis epidemic}. 
+Available at: \href{https://doi.org/10.3389/fimmu.2023.1234785}{https://doi.org/10.3389/fimmu.2023.1234785}.
+
+\bibitem{dattani2023}
+S.~Dattani, F.~Spooner, H.~Ritchie, and M.~Roser. 
+\textit{Tuberculosis}. 
+Available at: \href{https://ourworldindata.org/tuberculosis}{https://ourworldindata.org/tuberculosis}.
+
+\end{thebibliography}
+\end{document}
