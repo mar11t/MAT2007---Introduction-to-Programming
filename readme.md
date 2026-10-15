@@ -22,7 +22,7 @@
 
 ## 01. Description
 This project looks at global surveillance records of **new tuberculosis (TB) cases per 100,000 individuals** to evaluate:
-1. **Cross-sectional lead (2024):** Which nations had the highest incidence rates in 2024, and whether the margin between the two leading Countries is statistically significant.
+1. **Cross-sectional lead (2024):** Which nations had the highest incidence rates in 2024, and whether the difference between the two leading countries is statistically significant.
 2. **COVID-19 Disruption:** How the COVID-19 pandemic (2020–2021) impacted reported incidence rates in the highest-burden nation (Kiribati).
 
 ---
