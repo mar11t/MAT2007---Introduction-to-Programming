@@ -3,7 +3,7 @@
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 
 
-**Author:** Marita Heidl (ID: `i6406044`)  
+**Author:** Marita Heidl (ID: `i6406044`) 
 **Course:** MAT2007 – Introduction to Programming  
 **University:** Maastricht Science Programme, Maastricht University  
 
